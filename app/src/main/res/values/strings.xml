@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ICNDbClient</string>
+    <string name="default_output_text">Remove this text!</string>
+    <string name="action_settings">Settings</string>
+    <string name="get_joke">Get Joke</string>
+    <string name="next_joke">Next Joke</string>
+    <string name="default_first_name">Chuck</string>
+    <string name="default_last_name">Norris</string>
+    <string name="thinking1">Thinking.</string>
+    <string name="thinking2">Thinking..</string>
+    <string name="thinking3">Thinking...</string>
+    <string name="internet_problems">Internet problems?</string>
+</resources>

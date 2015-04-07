@@ -1,0 +1,17 @@
+Objective: Produce an android application that retrieves a Chuck Norris joke from the internet and displays it to the user. The user can request additional jokes.
+
+About:
+Following a YouTube example demonstrating the android gradle wrapper with an application that uses Rest and Json to get and interpret Chuck Norris Jokes from the internet. The video is available at https://www.youtube.com/watch?v=0bhbQdZLpIE .The author,Kenneth Kousen, uses Spring for Android to retrieve jokes from http://www.icndb.com/ and displays them to the user. The author also uses Robotium for testing the user interface.
+
+Primary Goals: Learn more about Android Studio and the Gradle Wrapper.
+Secondary Secondary: Learn more about REST, JSON, and Robotium.
+
+How jokes are acquired:
+The jokes are requested from the site  http://api.icndb.com using HTTP GET.
+To fetch a random joke one can use http://api.icndb.com/jokes/random
+The result of such a fetch is a json object of the form:
+{ "type": "success", "value": { "id": 553, "joke": "China lets Chuck Norris search for porn on Google.", "categories": ["explicit"] } }
+Internally, a RestTemplate object is used to retrieve the json item. The RestTemplate then process the item into a Joke object.
+
+The app structure:
+The main activity is started and loads its main fragment. The main fragment contains a 'fetch joke' Button When the button is pressed, the fragment uses an AsynchTask to acquire a joke. The AsynchTask will then load the joke into a TextView. The button, still visible, can be repeatedly pressed to return more jokes.
