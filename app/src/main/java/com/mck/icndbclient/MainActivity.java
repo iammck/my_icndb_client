@@ -1,5 +1,7 @@
 package com.mck.icndbclient;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,17 +10,21 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+    private JokeRetriever jokeRetriever;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
+            AppFragment appFragment = new AppFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new AppFragment())
+                    .add(R.id.app_frag_container, appFragment)
                     .commit();
         }
-    }
+        this.jokeRetriever = new JokeRetrieverImpl();
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,4 +48,19 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void requestJoke(JokeResponder responder) {
+        // get names from resources
+        SharedPreferences preferences = getPreferences(Activity.MODE_PRIVATE);
+        String firstName = preferences.getString("joke_first_name", "Chucks");
+        String lastName = preferences.getString("joke_last_name", "Norrick");
+        getJokeRetriever().getJoke(firstName, lastName, responder);
+    }
+
+    private JokeRetriever getJokeRetriever() {
+        return jokeRetriever;
+    }
+
+    public void setJokeRetriever(JokeRetriever jokeRetriever){
+        this.jokeRetriever = jokeRetriever;
+    }
 }

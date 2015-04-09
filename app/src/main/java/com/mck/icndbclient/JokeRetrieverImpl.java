@@ -1,5 +1,7 @@
 package com.mck.icndbclient;
 
+import android.os.AsyncTask;
+
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -12,17 +14,10 @@ public class JokeRetrieverImpl implements JokeRetriever{
 
     public JokeRetrieverImpl(){}
 
-    /**
-     * gets the joke with default values. The Uri
-     * http://api.icndb.com/jokes/random
-     * is used to retrieve a random joke.
-     */
-    /*public Joke getJoke(){
-        RestTemplate restTemplate = getRestTemplate();
-        restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
-        return restTemplate.getForObject(
-                "http://api.icndb.com/jokes/random?escape=javascript", Joke.class);
-    }*/
+    // public for testing.
+    public RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
 
     /**
      * gets the joke with given name. The Uri
@@ -38,19 +33,45 @@ public class JokeRetrieverImpl implements JokeRetriever{
         stringBuilder.append(lastName);
         stringBuilder.append("&amp&escape=javascript");
         String uri = stringBuilder.toString();
-        RestTemplate restTemplate = getRestTemplate();
-        restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
         try {
+            RestTemplate restTemplate = getRestTemplate();
+            restTemplate.getMessageConverters().add(new GsonHttpMessageConverter());
             return restTemplate.getForObject(uri, Joke.class);
         } catch (RestClientException e) {
             e.printStackTrace();
-            return null;
+            Joke result = new Joke();
+            result.value = new Joke.Value();
+            result.value.joke = "Unable to retrieve the Joke with RestClientException.";
+            result.type = "error";
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Joke result = new Joke();
+            result.value = new Joke.Value();
+            result.value.joke = "Unable to retrieve the Joke. with Exception!";
+            result.type = "error";
+            return result;
         }
     }
 
-    // public for testing.
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }
+    /**
+     * Get the joke with the first and last name, it reports them to the responder. This
+     * method uses an asycTask and does not update the ui.
+     */
+    @Override
+    public void getJoke(String firstName, String lastName, final JokeResponder responder) {
+        // create an async task and run getJoke(). use the responder in the response.
+        new AsyncTask<String, String, Joke>(){
+            @Override
+            protected Joke doInBackground(String... params) {
+                return getJoke(params[0], params[1]);
+            }
 
+            @Override
+            protected void onPostExecute(Joke joke) {
+                super.onPostExecute(joke);
+                responder.onJokeResponse(joke);
+            }
+        }.execute(firstName, lastName);
+    }
 }
