@@ -1,9 +1,9 @@
-The command
+With a connected android test phone or simulator, The command
 .\gradlew test connectedAndroidTest
 can be run from the commandline in Android Studio to build and run the test and androidTest tasks, producing reports in the build/reports/test and build/output/reports/androidTest directories.
 
 Objective: Using a RestTeplate with a gson converter compontent to convert html
-objects into json objects to produce an android application that retrieves Chuck Norris jokes from the internet, one at a time, and displays them to the user one at a time. The user can request additional jokes. The project should be build with mulitiple flavors producing multiple apks.
+objects into json objects to produce an android application that retrieves Chuck Norris jokes from the internet, one at a time, and displays them to the user one at a time. The user can request additional jokes. The project should be build with mulitiple flavors producing multiple apks for varying sdks. The project should have custom build configs producing seperate release versions (by joke target).
 
 About:
 Following a YouTube example demonstrating the android gradle wrapper with an application that uses Rest and Json to get and interpret Chuck Norris Jokes from the internet. The video is available at https://www.youtube.com/watch?v=0bhbQdZLpIE .The author,Kenneth Kousen, uses Spring for Android to retrieve jokes from http://www.icndb.com/ and displays them to the user. The author also uses Robotium for testing the user interface.
