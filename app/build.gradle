@@ -12,20 +12,36 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {
+    signingConfigs {
+        release {
+            if (System.console() != null) {
+                storeFile file("keystore/icndbclientkey.keystore")
+                storePassword System.console().readLine("\nKeystore password: ")
+                keyAlias System.console().readLine("\nKey alias: ")
+                keyPassword System.console().readLine("\nKey password: ")
+            }
+        }
+    }
 
+    buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // atm, i am only using console to sign and release. A release
+            // only happens with a signing config.
+            if (System.console() != null) {
+                signingConfig signingConfigs.release
+            }
         }
 
         millhouse.initWith(buildTypes.release)
         millhouse {
-            applicationIdSuffix ".millhouse"
+            applicationIdSuffix ".release.millhouse"
         }
+
         calrissian.initWith(buildTypes.release)
         calrissian {
-            applicationIdSuffix ".calrissian"
+            applicationIdSuffix ".release.calrissian"
         }
     }
 
@@ -34,15 +50,22 @@ android {
         exclude 'META-INF/license.txt'
     }
 
-    productFlavors {
+    /**
+     * Product flavors seem to go with the aosp
+     * concept of Multiple APKs. Documentation suggests
+     * not using multiple apks unless necessary.
+     * http://developer.android.com/google/play/publishing/multiple-apks.html
+     * more info about using multiple akps can be found at
+     * https://developer.android.com/training/multiple-apks/index.html
+     */
+    /*productFlavors {
         support {
-
+            // uses the default.
         }
-
         kitkat {
             minSdkVersion 19
         }
-    }
+    }*/
 }
 
 repositories{

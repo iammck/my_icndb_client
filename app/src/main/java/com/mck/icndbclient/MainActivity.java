@@ -51,8 +51,9 @@ public class MainActivity extends ActionBarActivity {
     public void requestJoke(JokeResponder responder) {
         // get names from resources
         SharedPreferences preferences = getPreferences(Activity.MODE_PRIVATE);
-        String firstName = preferences.getString("joke_first_name", "Chucks");
-        String lastName = preferences.getString("joke_last_name", "Norrick");
+        String firstName = getResources().getString(R.string.default_first_name);
+        String lastName = getResources().getString(R.string.default_last_name);
+
         getJokeRetriever().getJoke(firstName, lastName, responder);
     }
 

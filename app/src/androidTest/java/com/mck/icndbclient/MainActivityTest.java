@@ -34,7 +34,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         // expected strings
         expectedJokeString = "Chuck Norris escaped death\'s grip with a round house kick to the head. \"Wham!\"";
         bGetJokeInitialString = "Get Joke";
-        stvOutputInitialString = "Remove this default text!";
+        stvOutputInitialString = "Tap the button!";
 
         // an expected joke.
         expectedJoke = new Joke();
