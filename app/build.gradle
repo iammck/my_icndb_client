@@ -34,15 +34,33 @@ android {
             }
         }
 
-        millhouse.initWith(buildTypes.release)
-        millhouse {
-            applicationIdSuffix ".release.millhouse"
+        millhouseDebug.initWith(buildTypes.debug)
+        millhouseDebug {
+            applicationIdSuffix ".debug.millhouseRelease"
         }
 
-        calrissian.initWith(buildTypes.release)
-        calrissian {
+        calrissianDebug.initWith(buildTypes.debug)
+        calrissianDebug {
+            applicationIdSuffix ".debug.calrissian"
+        }
+
+        millhouseRelease.initWith(buildTypes.release)
+        millhouseRelease {
+            applicationIdSuffix ".release.millhouseRelease"
+        }
+
+        calrissianRelease.initWith(buildTypes.release)
+        calrissianRelease {
             applicationIdSuffix ".release.calrissian"
         }
+
+    }
+    // They use custom source sets.
+    sourceSets {
+        millhouseDebug.setRoot('src/millhouse')
+        millhouseRelease.setRoot('src/millhouse')
+        calrissianDebug.setRoot('src/calrissian')
+        calrissianRelease.setRoot('src/calrissian')
     }
 
     packagingOptions {
@@ -57,15 +75,28 @@ android {
      * http://developer.android.com/google/play/publishing/multiple-apks.html
      * more info about using multiple akps can be found at
      * https://developer.android.com/training/multiple-apks/index.html
+     *
+     * I am going to use product flavors to make upgrades to the UI. Plus,
+     * I am interested in knowing if like build types a class defined in the
+     * src/main/java directory can not be redefined in the src/flavor/java.
+     * (For build types if src/main/java/MyClass.java exits, creating a
+     * src/buildType/MyClass.java will raise compile time errors because
+     * the buildType is initialized with a debug release build types).
+     *
+     * unlike the calrissianRelease or millhouse build types, upgrades to the UI
+     * are not creating a different application, but are different versions
+     * of the same application. That makes them good canidates for flavors.
+     *
+     * Product flavor for using a button or a ViewPager with adapter.
      */
-    /*productFlavors {
-        support {
-            // uses the default.
+    productFlavors {
+        ButtonActivityFlavor {
+            // uses the button activity.
         }
-        kitkat {
-            minSdkVersion 19
+        SliderActivityFlavor {
+            // uses the slider activity.
         }
-    }*/
+    }
 }
 
 repositories{
