@@ -64,4 +64,5 @@ public class MainActivity extends ActionBarActivity {
     public void setJokeRetriever(JokeRetriever jokeRetriever){
         this.jokeRetriever = jokeRetriever;
     }
+
 }
