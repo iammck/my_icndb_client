@@ -11,32 +11,33 @@
     android:gravity="center"
     android:weightSum="2">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/tvOutput"
-            android:text="@string/default_output_text"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/default_output_text"
-            android:gravity="center|bottom" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|top"
-        android:layout_weight="1">
-
-        <android.support.v4.view.ViewPager
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"/>
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvOutput"
+                android:text=  "@string/default_output_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/default_output_text"
+                android:gravity="center|bottom" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:gravity="center|top"
+            android:layout_weight="1">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
 </LinearLayout>

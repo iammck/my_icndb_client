@@ -2,6 +2,7 @@ package com.mck.icndbclient;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ public class AppFragment extends Fragment implements View.OnClickListener, JokeR
 
     private String LAST_RESPONSE = "AppFragmentLastJokeResponse";
     private String lastJoke;
+    private ViewPager mPager;
+    private WraparoundFragmentStatePagerAdapter mAdapter;
 
     public AppFragment() {
     }
@@ -41,14 +44,11 @@ public class AppFragment extends Fragment implements View.OnClickListener, JokeR
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-
         TextView tvOutput = (TextView) rootView.findViewById(R.id.tvOutput);
         tvOutput.setText(lastJoke);
-
-        // get the pager,
-        // create the adapter
-        // plug in the adapter
+        mPager = (ViewPager) rootView.findViewById(R.id.pager);
+        mAdapter = new WraparoundAdapterImpl(getActivity().getSupportFragmentManager(), mPager);
+        mPager.setAdapter(mAdapter);
         return rootView;
     }
 
