@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 public abstract class WraparoundFragmentStatePagerAdapter extends FragmentStatePagerAdapter implements ViewPager.OnPageChangeListener {
 
     private final ViewPager mViewPager;
-    private int count = -1;
+   private int count = -1;
 
 
     public WraparoundFragmentStatePagerAdapter(FragmentManager fm, ViewPager viewPager) {
@@ -48,12 +48,19 @@ public abstract class WraparoundFragmentStatePagerAdapter extends FragmentStateP
         // there is some ui jumping happening. perhaps a PageTransformer to overlay change.
         // http://developer.android.com/training/animation/screen-slide.html
         // if in the first position go to the second to last position, which will eval to this spot.
-        if (position == 0 && positionOffsetPixels == 0){
-            mViewPager.setCurrentItem(getSize(),false);
+        if (position == 0){
+            if (positionOffsetPixels == 0) {
+                mViewPager.setCurrentItem(getSize(), false);
+            }
+            return;
         // if in the last position set the current position to the second item in index 1.
-        } else if (position == getSize() + 1 && positionOffsetPixels == 0){
-            mViewPager.setCurrentItem(1,false);
+        } else if (position == getSize() + 1){
+            if (positionOffsetPixels == 0) {
+                mViewPager.setCurrentItem(1, false);
+            }
+            return;
+        } else {
+            onPageScroll(position, positionOffset, positionOffsetPixels);
         }
-        onPageScroll(position, positionOffset, positionOffsetPixels);
     }
 }

@@ -10,6 +10,9 @@ import android.support.v4.view.ViewPager;
  */
 public class WraparoundAdapterImpl extends WraparoundFragmentStatePagerAdapter {
     private int size = 2;
+    private int lastPage = 0;
+    private ViewPager.OnPageChangeListener mPageChangeListener;
+
 
     public WraparoundAdapterImpl(FragmentManager supportFragmentManager, ViewPager mPager) {
         super(supportFragmentManager, mPager);
@@ -31,16 +34,22 @@ public class WraparoundAdapterImpl extends WraparoundFragmentStatePagerAdapter {
 
     @Override
     public void onPageScroll(int position, float positionOffset, int positionOffsetPixels) {
-
+        mPageChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
     }
 
     @Override
     public void onPageSelected(int position) {
-
+        mPageChangeListener.onPageSelected(position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
+        mPageChangeListener.onPageScrollStateChanged(state);
+    }
 
+
+
+    public void setPageChangeListener(ViewPager.OnPageChangeListener listener){
+        mPageChangeListener = listener;
     }
 }

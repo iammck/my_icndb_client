@@ -1,5 +1,9 @@
 package com.mck.icndbclient;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,9 +32,9 @@ public class SliderFragment extends Fragment {
         int id;
         id = getArguments().getInt(KEY_POSITION);
         TextView tvOutput = (TextView) rootView.findViewById(R.id.slider_output);
-        tvOutput.setText("The current page id is "
-                + String.valueOf(getArguments().getInt(KEY_POSITION))
-                + "\n Slide your finger across the screen for another joke.");
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slider_image_1);
+        Drawable background = new BitmapDrawable(getResources(),bitmap);
+        tvOutput.setBackgroundDrawable(background);
         return rootView;
     }
 }

@@ -6,19 +6,19 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 /**
  * s
  * A placeholder fragment containing a simple view.
  */
-public class AppFragment extends Fragment implements View.OnClickListener, JokeResponder {
+public class AppFragment extends Fragment implements View.OnClickListener, JokeResponder, ViewPager.OnPageChangeListener {
 
     private String LAST_RESPONSE = "AppFragmentLastJokeResponse";
     private String lastJoke;
     private ViewPager mPager;
-    private WraparoundFragmentStatePagerAdapter mAdapter;
+    private WraparoundAdapterImpl mAdapter;
+    private int mLastScrollPosition;
 
     public AppFragment() {
     }
@@ -49,15 +49,14 @@ public class AppFragment extends Fragment implements View.OnClickListener, JokeR
         mPager = (ViewPager) rootView.findViewById(R.id.pager);
         mAdapter = new WraparoundAdapterImpl(getActivity().getSupportFragmentManager(), mPager);
         mPager.setAdapter(mAdapter);
+        mAdapter.setPageChangeListener(this);
+        mLastScrollPosition = mPager.getCurrentItem();
         return rootView;
     }
-
-
 
     @Override
     public void onClick(View v) {
         ((MainActivity) getActivity()).requestJoke(this);
-
     }
 
     @Override
@@ -71,5 +70,23 @@ public class AppFragment extends Fragment implements View.OnClickListener, JokeR
                 tvOutput.setText(lastJoke);
             }
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (position != mLastScrollPosition && positionOffset == 0){
+            mLastScrollPosition = position;
+            ((MainActivity) getActivity()).requestJoke(this);
+        }
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
