@@ -17,6 +17,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
+            String title = getResources().getString(R.string.default_last_name)
+                    + getResources().getString(R.string.title_half);
+            setTitle(title);
             AppFragment appFragment = new AppFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.app_frag_container, appFragment)

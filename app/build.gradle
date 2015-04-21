@@ -8,8 +8,8 @@ android {
         applicationId "com.mck.icndbclient"
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
     }
 
     signingConfigs {
@@ -36,7 +36,7 @@ android {
 
         millhouseDebug.initWith(buildTypes.debug)
         millhouseDebug {
-            applicationIdSuffix ".debug.millhouseRelease"
+            applicationIdSuffix ".debug.millhouse"
         }
 
         calrissianDebug.initWith(buildTypes.debug)
@@ -46,7 +46,7 @@ android {
 
         millhouseRelease.initWith(buildTypes.release)
         millhouseRelease {
-            applicationIdSuffix ".release.millhouseRelease"
+            applicationIdSuffix ".release.millhouse"
         }
 
         calrissianRelease.initWith(buildTypes.release)
