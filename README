@@ -2,6 +2,8 @@ With a connected android test phone or simulator, The command
 .\gradlew test connectedAndroidTest
 can be run from the commandline in Android Studio to build and run the test and androidTest tasks, producing reports in the build/reports/test and build/output/reports/androidTest directories.
 
+In Android studio the application can be ran or debugged using any build variant apk.
+
 You can also download some alpha releases by first joining the group at
 https://groups.google.com/d/forum/commckalphatesting
 
