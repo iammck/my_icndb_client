@@ -86,15 +86,13 @@ android {
      * are not creating a different application, but are different versions
      * of the same application. That makes them good canidates for flavors.
      *
-     * Product flavor for using a button or a ViewPager with adapter.
+     * Product flavor for using a button or a ViewPager with adapter are completed
+     * and commented out. SlidingJokesFlavor is the combination of the two flavors.
      */
     productFlavors {
-        ButtonActivityFlavor {
-            // uses the button activity.
-        }
-        SliderActivityFlavor {
-            // uses the slider activity.
-        }
+        //ButtonActivityFlavor {}
+        //SliderActivityFlavor {}
+        SlidingJokesFlavor {}
     }
 }
 
