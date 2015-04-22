@@ -43,7 +43,7 @@ public class AppFragment extends Fragment implements View.OnClickListener, JokeR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.app_fragment, container, false);
         TextView tvOutput = (TextView) rootView.findViewById(R.id.tvOutput);
         tvOutput.setText(lastJoke);
         mPager = (ViewPager) rootView.findViewById(R.id.pager);
