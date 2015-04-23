@@ -14,8 +14,8 @@ import com.robotium.solo.Solo;
  * This test is run with gradle wrapper by using .\gradle connectedAndroidTest command.
  *
  */
-public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
-    public MainActivityTest() {
+public class AppFragmentTest extends ActivityInstrumentationTestCase2<MainActivity> {
+    public AppFragmentTest() {
         super(MainActivity.class);
     }
 
@@ -32,8 +32,10 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         solo = new Solo(getInstrumentation(), getActivity());
         // expected strings
         expectedJokeString = "Chuck Norris escaped death\'s grip with a round house kick to the head. \"Wham!\"";
-        bGetJokeInitialString = "Get Joke";
-        stvOutputInitialString = "Tap the button!";
+        bGetJokeInitialString = getActivity()
+                .getResources().getString(R.string.get_joke);
+        stvOutputInitialString = getActivity()
+                .getResources().getString(R.string.default_output_text);
 
         // an expected joke.
         expectedJoke = new Joke();

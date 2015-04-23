@@ -7,7 +7,6 @@ import junit.framework.TestCase;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.skyscreamer.jsonassert.JSONAssert;
-
 // this test may be build using .\gradle check --continue
 // or .\gradle test --continue.
 

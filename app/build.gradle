@@ -86,11 +86,14 @@ android {
      * are not creating a different application, but are different versions
      * of the same application. That makes them good canidates for flavors.
      *
-     * Product flavor for using a button or a ViewPager with adapter are completed
-     * and commented out. SlidingJokesFlavor is the combination of the two flavors.
+     * There are product flavor for using a button or a ViewPager with adapters.
+     * SlidingJokesFlavor is the combination of the two flavors. The Slider
+     * flavor is commented out as not used. Button flavor is still active for
+     * reference of tests depending upon flavor. See app/src/androidTestButtonActivityFlavor
+     * for specific flavor test v app/src/androidTest for the main android tests.
      */
     productFlavors {
-        //ButtonActivityFlavor {}
+        ButtonActivityFlavor {}
         //SliderActivityFlavor {}
         SlidingJokesFlavor {}
     }
@@ -105,14 +108,13 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
     compile 'com.android.support:appcompat-v7:22.0.0'
-
     // unit tests should include
     testCompile 'junit:junit:4.12'
-
     // Need to use a partial mock (spy) so must use version 1.9.5 .
     androidTestCompile 'org.mockito:mockito-core:1.9.5'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestCompile 'org.skyscreamer:jsonassert:1.2.3'
+    //compile 'com.jayway.android.robotium:robotium-solo:5.3.1'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.3.1'
 }
