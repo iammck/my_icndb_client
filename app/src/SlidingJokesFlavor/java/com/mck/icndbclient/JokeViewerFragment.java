@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * Created by mike on 4/22/2015.
@@ -26,7 +25,7 @@ public class JokeViewerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.sliding_jokes_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.joke_viewer_fragment, container, false);
         Log.v("com.mck", "SliderJokesFragment onCreateView() has been called.");
 
         mPager = (ViewPager) rootView.findViewById(R.id.pager);

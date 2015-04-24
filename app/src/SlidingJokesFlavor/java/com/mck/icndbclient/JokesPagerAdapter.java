@@ -96,6 +96,7 @@ public class JokesPagerAdapter extends PagerAdapter {
             mCurrentPrimaryItem = mFragmentManager.findFragmentById(fragId);
         }
         mJokes = bundle.getParcelableArrayList(KEY_JOKES_ARRAY);
+        notifyDataSetChanged();
     }
 
     @Override

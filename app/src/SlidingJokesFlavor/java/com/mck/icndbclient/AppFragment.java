@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * s
@@ -38,9 +37,12 @@ public class AppFragment extends Fragment implements View.OnClickListener, JokeR
             jokeViewerFragment = new JokeViewerFragment();
             getChildFragmentManager()
                     .beginTransaction()
-                    .add(R.id.sliding_jokes_frag_container, jokeViewerFragment)
+                    .add(R.id.joke_viewer_frag_container, jokeViewerFragment)
                     .commit();
+            getChildFragmentManager().executePendingTransactions();
         }
+        jokeViewerFragment = (JokeViewerFragment)
+                getChildFragmentManager().findFragmentById(R.id.joke_viewer_frag_container);
         return rootView;
     }
 
