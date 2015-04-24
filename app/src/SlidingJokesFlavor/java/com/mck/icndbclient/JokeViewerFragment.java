@@ -13,11 +13,10 @@ import android.widget.TextView;
 /**
  * Created by mike on 4/22/2015.
  */
-public class SlidingJokesFragment extends Fragment implements ViewPager.OnPageChangeListener {
+public class JokeViewerFragment extends Fragment {
 
     private ViewPager mPager;
-    private WraparoundAdapterImpl mAdapter;
-    private int mLastScrollPosition;
+    private JokesPagerAdapter mAdapter;
 
 
     @Override
@@ -31,33 +30,15 @@ public class SlidingJokesFragment extends Fragment implements ViewPager.OnPageCh
         Log.v("com.mck", "SliderJokesFragment onCreateView() has been called.");
 
         mPager = (ViewPager) rootView.findViewById(R.id.pager);
-        mAdapter = new WraparoundAdapterImpl(getChildFragmentManager(), mPager);
+        mAdapter = new JokesPagerAdapter(getChildFragmentManager());
         mPager.setAdapter(mAdapter);
-        mAdapter.setPageChangeListener(this);
-        mLastScrollPosition = mPager.getCurrentItem();
         return rootView;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
 
-    //////
-    // ViewPager.OnPageChangeListener overrides.
-    //////
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
+    public void addJoke(Joke joke) {
+        mAdapter.addJoke(joke);
+        // set to the last position, zero indexed translation of adapter count.
+        mPager.setCurrentItem(mAdapter.getCount() - 1, true);
     }
 }

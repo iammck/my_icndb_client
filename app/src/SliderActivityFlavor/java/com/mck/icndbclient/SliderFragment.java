@@ -31,7 +31,7 @@ public class SliderFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.slider_fragment,container, false);
         int id;
         id = getArguments().getInt(KEY_POSITION);
-        TextView tvOutput = (TextView) rootView.findViewById(R.id.slider_output);
+        TextView tvOutput = (TextView) rootView.findViewById(R.id.joke_fragment_output);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slider_image_1);
         Drawable background = new BitmapDrawable(getResources(),bitmap);
         tvOutput.setBackgroundDrawable(background);

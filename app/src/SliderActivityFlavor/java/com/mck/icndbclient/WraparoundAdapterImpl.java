@@ -20,9 +20,9 @@ public class WraparoundAdapterImpl extends WraparoundFragmentStatePagerAdapter {
 
     @Override
     protected Fragment getFragmentForPosition(int position) {
-        Fragment result = new SliderFragment();
+        Fragment result = new JokeFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(SliderFragment.KEY_POSITION, position);
+        bundle.putInt(JokeFragment.KEY_POSITION, position);
         result.setArguments(bundle);
         return result;
     }

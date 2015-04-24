@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-public class SliderFragment extends Fragment {
+public class JokeFragment extends Fragment {
 
-    public static final String KEY_POSITION = "SliderFragment.KEY_POSITION" ;
+    public static final String KEY_JOKE = "JokeFragment.KEY_JOKE";
 
-    public SliderFragment() {
+    public JokeFragment() {
         // Required empty public constructor
     }
 
@@ -29,12 +29,13 @@ public class SliderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.v("com.mck", "SliderFragment onCreateView() has ben called.");
         View rootView = inflater.inflate(R.layout.slider_fragment,container, false);
-        TextView tvOutput = (TextView) rootView.findViewById(R.id.slider_output);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slider_image_1);
-        Drawable background = new BitmapDrawable(getResources(),bitmap);
-        tvOutput.setBackgroundDrawable(background);
+        TextView tvOutput = (TextView) rootView.findViewById(R.id.joke_fragment_output);
+        Joke joke = getArguments().getParcelable(KEY_JOKE);
+        tvOutput.setText(joke.getJoke());
+        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.slider_image_1);
+        //Drawable background = new BitmapDrawable(getResources(),bitmap);
+        //tvOutput.setBackgroundDrawable(background);
         return rootView;
     }
 }

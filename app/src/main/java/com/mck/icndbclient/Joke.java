@@ -1,5 +1,8 @@
 package com.mck.icndbclient;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by mike on 4/1/2015.
  *
@@ -16,7 +19,7 @@ package com.mck.icndbclient;
  * GSon also requires default constructors.
  *
  */
-public class Joke {
+public class Joke implements Parcelable{
     public Joke(){
 
     }
@@ -31,6 +34,42 @@ public class Joke {
         int id;
         String joke;
         String categories[];
+    }
+
+    // Parcelable
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(type);
+        dest.writeInt(value.id);
+        dest.writeString(value.joke);
+        dest.writeStringArray(value.categories);
+
+    }
+
+    public static final Creator<Joke> CREATOR = new Creator<Joke>() {
+        @Override
+        public Joke createFromParcel(Parcel source) {
+            return new Joke(source);
+        }
+
+        @Override
+        public Joke[] newArray(int size) {
+            return new Joke[size];
+        }
+    };
+
+    private Joke(Parcel source){
+        this.type = source.readString();
+        this.value = new Value();
+        this.value.id = source.readInt();
+        this.value.joke = source.readString();
+        this.value.categories = source.createStringArray();
     }
 
 }

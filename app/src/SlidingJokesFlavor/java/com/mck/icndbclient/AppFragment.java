@@ -13,7 +13,9 @@ import android.widget.Toast;
  * s
  * A placeholder fragment containing a simple view.
  */
-public class AppFragment extends Fragment implements View.OnClickListener {
+public class AppFragment extends Fragment implements View.OnClickListener, JokeResponder {
+
+    private JokeViewerFragment jokeViewerFragment;
 
     public AppFragment() {
     }
@@ -33,10 +35,10 @@ public class AppFragment extends Fragment implements View.OnClickListener {
         if (savedInstanceState == null) {
             Log.v("com.mck", "AppFragment instantiating SliderJokesFragment.");
             // this view should contain the sliding joke fragment.
-            SlidingJokesFragment fragment = new SlidingJokesFragment();
+            jokeViewerFragment = new JokeViewerFragment();
             getChildFragmentManager()
                     .beginTransaction()
-                    .add(R.id.sliding_jokes_frag_container, fragment)
+                    .add(R.id.sliding_jokes_frag_container, jokeViewerFragment)
                     .commit();
         }
         return rootView;
@@ -44,9 +46,13 @@ public class AppFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getActivity().getApplicationContext(),
-                "The AppFrag has detected a click event.",
-                Toast.LENGTH_LONG).show();
+        Joke joke = null;
+        ((MainActivity) getActivity()).requestJoke(this);
+
     }
 
+    @Override
+    public void onJokeResponse(Joke joke) {
+        jokeViewerFragment.addJoke(joke);
+    }
 }
