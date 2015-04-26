@@ -1,14 +1,17 @@
 package com.mck.icndbclient;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mck.icndbclient.provider.JokeProviderContract;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity implements JokeResponder {
 
     private JokeRetriever jokeRetriever;
 
@@ -68,4 +71,29 @@ public class MainActivity extends ActionBarActivity {
         this.jokeRetriever = jokeRetriever;
     }
 
+    public void requestJoke(){
+        // get names from resources
+        SharedPreferences preferences = getPreferences(Activity.MODE_PRIVATE);
+        String firstName = getResources().getString(R.string.default_first_name);
+        String lastName = getResources().getString(R.string.default_last_name);
+
+        getJokeRetriever().getJoke(firstName, lastName, this);
+    }
+
+    @Override
+    public void onJokeResponse(Joke joke) {
+        // create content values from the joke
+        ContentValues values = new ContentValues();
+        values.put(JokeProviderContract.JokesTable.type, joke.type);
+        values.put(JokeProviderContract.JokesTable.joke_id, joke.value.id);
+        values.put(JokeProviderContract.JokesTable.joke, joke.getJoke());
+        if (joke.value.categories !=null) {
+            String categories = "";
+            for (String category : joke.value.categories) {
+                categories += category + " ";
+            } // trim? ok.
+            values.put(JokeProviderContract.JokesTable.categories, categories.trim());
+        }
+        getContentResolver().insert(JokeProviderContract.JokesTable.URI, values);
+    }
 }

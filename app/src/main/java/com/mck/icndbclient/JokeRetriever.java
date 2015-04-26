@@ -7,7 +7,6 @@ package com.mck.icndbclient;
  * Created by mike on 4/5/2015.
  */
 public interface JokeRetriever {
-
     /** Gets the joke with first and last name and returns it.*/
     Joke getJoke(String firstName, String lastName);
     /** Gets the joke with first and last name and returns them to responder.*/
