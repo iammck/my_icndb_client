@@ -64,7 +64,8 @@ public class JokeViewerFragment extends Fragment implements LoaderManager.Loader
 
         SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         int pos = prefs.getInt(KEY_RESTART_POSITION, -1);
-        if (pos >= 0){
+        // if there is no prev state and there is a restart position
+        if (savedInstanceState == null && pos >= 0){
             prefs.edit().putInt(KEY_RESTART_POSITION, -1).commit();
             restartPosition = pos;
         }
