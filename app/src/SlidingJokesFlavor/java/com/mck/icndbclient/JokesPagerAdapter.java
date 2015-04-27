@@ -33,9 +33,17 @@ public class JokesPagerAdapter extends PagerAdapter {
         mJokes = new ArrayList<Joke>();
         mFragmentManager = fragmentManager;
     }
-    public void addJoke(Joke joke){
+
+    /**
+     * Adds the Joke to the list and notifies data set changed.
+     * Returns the position the joke was added in (last position).
+     * @param joke The joke to add to adapter.
+     * @return the position the joke was added to the adapter in.
+     */
+    public int addJoke(Joke joke){
         mJokes.add(joke);
         super.notifyDataSetChanged();
+        return mJokes.size() - 1;
     }
 
     @Override

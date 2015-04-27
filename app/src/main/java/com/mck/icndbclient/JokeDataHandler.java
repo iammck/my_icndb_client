@@ -16,6 +16,7 @@ public class JokeDataHandler implements JokeRetriever.JokeResponder {
 
     public JokeDataHandler(Activity activity){
         this.activity = activity;
+        jokeRetriever = new JokeRetriever();
     }
 
     public void setJokeRetriever(JokeRetriever jokeRetriever){

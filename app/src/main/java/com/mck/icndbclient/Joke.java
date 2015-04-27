@@ -1,7 +1,10 @@
 package com.mck.icndbclient;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.mck.icndbclient.provider.JokeProviderContract;
 
 /**
  * Created by mike on 4/1/2015.
@@ -37,7 +40,6 @@ public class Joke implements Parcelable{
     }
 
     // Parcelable
-
     @Override
     public int describeContents() {
         return 0;
@@ -72,4 +74,15 @@ public class Joke implements Parcelable{
         this.value.categories = source.createStringArray();
     }
 
+    public Joke(ContentValues values){
+        value = new Value();
+
+        String categories = values.getAsString(JokeProviderContract.JokesTable.categories);
+        this.type = values.getAsString(JokeProviderContract.JokesTable.type);
+        this.value.joke = values.getAsString(JokeProviderContract.JokesTable.joke);
+        this.value.id = values.getAsInteger(JokeProviderContract.JokesTable.joke_id);
+        if (categories != null){
+            this.value.categories = categories.split(" ");
+        }
+    }
 }
