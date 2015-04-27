@@ -12,7 +12,7 @@ import android.widget.Button;
  * s
  * A placeholder fragment containing a simple view.
  */
-public class AppFragment extends Fragment implements View.OnClickListener, JokeResponder {
+public class AppFragment extends Fragment implements View.OnClickListener, JokeRetriever.JokeResponder {
 
     private JokeViewerFragment jokeViewerFragment;
 

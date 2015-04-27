@@ -30,7 +30,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
      * via query on the db for the result.
      */
     public void testOnJokeResponseGeneratesQuery(){
-        getActivity().onJokeResponse(expectedJoke);
+        getActivity().getJokeDataHandler().onJokeResponse(expectedJoke);
         // omg! o hope I don't need to set up a custom provider stuffs for this!
         // I may need to wait a sec to for the db to read.
         Cursor rCursor = getActivity()

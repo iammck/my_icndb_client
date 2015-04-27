@@ -16,7 +16,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
-public class JokeRetrieverImplTest extends TestCase {
+public class JokeRetrieverTest extends TestCase {
 
     public void testGetJoke() throws Exception {
         String firstName = "Chuck";
@@ -26,10 +26,10 @@ public class JokeRetrieverImplTest extends TestCase {
         // will need a mockRestTemplate
         RestTemplate mockRestTemplate = mock(RestTemplate.class);
         //Need to call a real method so use partial mock on JokeRetrieverImpl via a spy.
-        JokeRetrieverImpl spyOnJokeRetrieverImpl = spy(new JokeRetrieverImpl());
+        JokeRetriever spyOnJokeRetriever = spy(new JokeRetriever());
         // return the mockRestTemplate when jokeRetrieverImplSpy.getRestTemplate()
         doReturn(mockRestTemplate)
-                .when(spyOnJokeRetrieverImpl)
+                .when(spyOnJokeRetriever)
                 .getRestTemplate();
 
         // need a mocked list of converters to verify adding of converter.
@@ -50,10 +50,10 @@ public class JokeRetrieverImplTest extends TestCase {
                 .getForObject(anyString(), eq(Joke.class));
 
         // Get the resulting joke from the jokeRetriever.
-        Joke resultJoke = spyOnJokeRetrieverImpl.getJoke(firstName, lastName);
+        Joke resultJoke = spyOnJokeRetriever.getJoke(firstName, lastName);
 
         // verify that the methods are all accessed.
-        verify(spyOnJokeRetrieverImpl).getRestTemplate();
+        verify(spyOnJokeRetriever).getRestTemplate();
         verify(mockRestTemplate).getMessageConverters();
         verify(mockConvertersList)
                 .add(any(HttpMessageConverter.class));
@@ -71,7 +71,7 @@ public class JokeRetrieverImplTest extends TestCase {
      * @throws Exception
      */
     public void testGetJokeFromInternetIntegrationTest() throws Exception{
-        JokeRetrieverImpl retriever = new JokeRetrieverImpl();
+        JokeRetriever retriever = new JokeRetriever();
         Joke result = retriever.getJoke("Michael", "King");
         // assert we have received a response.
         assertNotNull("Unable to finish getting a Joke instance for the server integration test.", result);

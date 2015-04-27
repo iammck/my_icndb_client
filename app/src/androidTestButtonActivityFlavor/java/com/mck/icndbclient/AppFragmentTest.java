@@ -15,6 +15,8 @@ import com.robotium.solo.Solo;
  *
  */
 public class AppFragmentTest extends ActivityInstrumentationTestCase2<MainActivity> {
+
+    // Need a default constructor to forward to super the proper class. (def by T?)
     public AppFragmentTest() {
         super(MainActivity.class);
     }

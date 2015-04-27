@@ -12,7 +12,7 @@ import android.widget.TextView;
  * s
  * A placeholder fragment containing a simple view.
  */
-public class AppFragment extends Fragment implements View.OnClickListener, JokeResponder, ViewPager.OnPageChangeListener {
+public class AppFragment extends Fragment implements View.OnClickListener, JokeRetriever.JokeResponder, ViewPager.OnPageChangeListener {
 
     private String LAST_RESPONSE = "AppFragmentLastJokeResponse";
     private String lastJoke;

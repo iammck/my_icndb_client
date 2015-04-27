@@ -1,25 +1,21 @@
 package com.mck.icndbclient;
 
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.mck.icndbclient.provider.JokeProviderContract;
 
+public class MainActivity extends ActionBarActivity {
 
-public class MainActivity extends ActionBarActivity implements JokeResponder {
-
-    private JokeRetriever jokeRetriever;
+    private JokeDataHandler jokeDataHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
+
             String title = getResources().getString(R.string.default_last_name)
                     + getResources().getString(R.string.title_half);
             setTitle(title);
@@ -28,8 +24,8 @@ public class MainActivity extends ActionBarActivity implements JokeResponder {
                     .add(R.id.app_frag_container, appFragment)
                     .commit();
         }
-        this.jokeRetriever = new JokeRetrieverImpl();
-
+        // get a handler to handle joke data requests.
+        this.jokeDataHandler = new JokeDataHandler(this);
     }
 
     @Override
@@ -54,46 +50,15 @@ public class MainActivity extends ActionBarActivity implements JokeResponder {
         return super.onOptionsItemSelected(item);
     }
 
-    public void requestJoke(JokeResponder responder) {
-        // get names from resources
-        SharedPreferences preferences = getPreferences(Activity.MODE_PRIVATE);
-        String firstName = getResources().getString(R.string.default_first_name);
-        String lastName = getResources().getString(R.string.default_last_name);
-
-        getJokeRetriever().getJoke(firstName, lastName, responder);
-    }
-
-    private JokeRetriever getJokeRetriever() {
-        return jokeRetriever;
-    }
-
-    public void setJokeRetriever(JokeRetriever jokeRetriever){
-        this.jokeRetriever = jokeRetriever;
+    public void requestJoke(JokeRetriever.JokeResponder responder) {
+        this.jokeDataHandler.requestJoke(responder);
     }
 
     public void requestJoke(){
-        // get names from resources
-        SharedPreferences preferences = getPreferences(Activity.MODE_PRIVATE);
-        String firstName = getResources().getString(R.string.default_first_name);
-        String lastName = getResources().getString(R.string.default_last_name);
-
-        getJokeRetriever().getJoke(firstName, lastName, this);
+        this.jokeDataHandler.requestJoke();
     }
 
-    @Override
-    public void onJokeResponse(Joke joke) {
-        // create content values from the joke
-        ContentValues values = new ContentValues();
-        values.put(JokeProviderContract.JokesTable.type, joke.type);
-        values.put(JokeProviderContract.JokesTable.joke_id, joke.value.id);
-        values.put(JokeProviderContract.JokesTable.joke, joke.getJoke());
-        if (joke.value.categories !=null) {
-            String categories = "";
-            for (String category : joke.value.categories) {
-                categories += category + " ";
-            } // trim? ok.
-            values.put(JokeProviderContract.JokesTable.categories, categories.trim());
-        }
-        getContentResolver().insert(JokeProviderContract.JokesTable.URI, values);
+    public JokeDataHandler getJokeDataHandler(){
+        return this.jokeDataHandler;
     }
 }
