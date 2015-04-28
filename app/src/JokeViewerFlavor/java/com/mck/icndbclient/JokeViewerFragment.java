@@ -34,8 +34,8 @@ public class JokeViewerFragment extends Fragment implements LoaderManager.Loader
             "JokeViewerFragment.KEY_JOKE_IDS";
 
     private ViewPager mPager;
-
     private JokesPagerAdapter mAdapter;
+
     // Using db ids and not joke ids to keep track of loaded Jokes.
     private ArrayList<Integer> jokeIds;
     private int restartPosition = -1;
@@ -105,41 +105,53 @@ public class JokeViewerFragment extends Fragment implements LoaderManager.Loader
         return result;
     }
 
+    /**
+     * makes the assumption that the db ids are in order, starting at one,
+     * incremental, and have no gaps.
+     *
+     * @param loader the cursor loader for the joke table uri.
+     * @param cursor the cursor containing all the rows available in joke table.
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // get the indices.
-        int indexdbId = cursor.getColumnIndex(JokeProviderContract.JokesTable._ID);
-        int indexType = cursor.getColumnIndex(JokeProviderContract.JokesTable.type);
-        int indexJoke = cursor.getColumnIndex(JokeProviderContract.JokesTable.joke);
-        int indexCategories = cursor.getColumnIndex(JokeProviderContract.JokesTable.categories);
-        int indexJokeId = cursor.getColumnIndex(JokeProviderContract.JokesTable.joke_id);
-        // if the cursor is not empty.
-        if ( cursor.moveToFirst()) {
-            // if we add jokes to the adapter, will want to move to the last position.
-            int lastPosition = -1;
-            // for each cursor row
-            do {
-                Integer dbId = cursor.getInt(indexdbId);
-                // If the cursor row is not in the the adapter, add it.
-                if (!jokeIds.contains(dbId)){
-                    Log.d("com.mck", "Viewer fragment adding joke id " + dbId + " to list of ids.");
-                    jokeIds.add(dbId);
-                    ContentValues jokeValues = new ContentValues();
-                    jokeValues.put(JokeProviderContract.JokesTable.type, cursor.getString(indexType));
-                    jokeValues.put(JokeProviderContract.JokesTable.joke, cursor.getString(indexJoke));
-                    jokeValues.put(JokeProviderContract.JokesTable.categories, cursor.getString(indexCategories));
-                    jokeValues.put(JokeProviderContract.JokesTable.joke_id, cursor.getString(indexJokeId));
-                    // the adapter returns the position of the the added joke.
-                    lastPosition = mAdapter.addJoke(new Joke(jokeValues));
-                }
-            // while there is another row to process.
-            } while (cursor.moveToNext());
-            if (restartPosition >=0){
-                mPager.setCurrentItem(restartPosition, true);
-                restartPosition = -1;
-            } else if (lastPosition >= 0){
-                mPager.setCurrentItem(lastPosition, true);
+        Log.d("com.mck","onLoadFinished with cursor and adapter counts are "
+                + cursor.getCount() + " and " + mAdapter.getCount() + ".");
+        // if cursor size is zero, need to add a fragment to the adapter with id = 1.
+        cursor.moveToFirst();
+        if (cursor.getCount() == 0 ){
+            mAdapter.addFragment(1);
+            return;
+        }
+        // if cursor size is equal to adapter count need to add a new fragment to the adapter with cursorsize + 1 for id.
+        if (cursor.getCount() == mAdapter.getCount()){
+            mAdapter.addFragment(cursor.getCount() + 1);
+            return;
+        }
+
+        // if adapter count is zero, need add all the rows plus one and set pager position.
+        if (mAdapter.getCount() == 0){
+            ArrayList<Integer> ids = new ArrayList<Integer>();
+            // if the cursor is not empty.
+            if ( cursor.moveToFirst()) {
+                // get the indices for the db id.
+                int index = cursor.getColumnIndex(JokeProviderContract.JokesTable._ID);
+                do {
+                    ids.add(cursor.getInt(index));
+                    // If the cursor row is not in the the adapter, add it.
+                    Log.d("com.mck", "Viewer fragment adding joke id " + cursor.getInt(index) + " to list of ids.");
+                    //while there is another row to process.
+                } while (cursor.moveToNext());
+                // now add the id + 1
+                ids.add(new Integer(cursor.getCount() + 1));
+
             }
+            mAdapter.addFragments(ids);
+
+            // get the last position, if there is not one, set it to the last item.
+            // Pager indices start with 0, but our db starts with 1
+            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            restartPosition = preferences.getInt(KEY_RESTART_POSITION, cursor.getCount() - 1);
+            mPager.setCurrentItem(restartPosition, true);
         }
     }
 

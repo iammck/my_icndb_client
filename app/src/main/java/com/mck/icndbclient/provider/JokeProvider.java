@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * Created by mike on 4/25/2015
@@ -70,10 +71,12 @@ public class JokeProvider extends ContentProvider {
                 selectionArgs = new String[1];
                 selectionArgs[0] = uri.getLastPathSegment();
                 selection = JokeProviderContract.JokesTable.SELECT_BY_ID;
+                break;
             case (JOKES):
                 // get all the jokes in the table.
                 selectionArgs = null;
                 selection = null;
+                break;
         }
         Cursor result = builder.query(db, projection, selection, selectionArgs, null, null, sortOrder);
         result.setNotificationUri(getContext().getContentResolver(), uri);

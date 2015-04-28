@@ -12,7 +12,7 @@ import android.widget.Button;
  * s
  * A placeholder fragment containing a simple view.
  */
-public class AppFragment extends Fragment implements View.OnClickListener {
+public class AppFragment extends Fragment {
 
     private JokeViewerFragment jokeViewerFragment;
 
@@ -29,8 +29,6 @@ public class AppFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.app_fragment, container, false);
-        Button button = (Button) rootView.findViewById(R.id.bGetJoke);
-        button.setOnClickListener(this);
         if (savedInstanceState == null) {
             // this view should contain the sliding joke fragment.
             jokeViewerFragment = new JokeViewerFragment();
@@ -45,10 +43,4 @@ public class AppFragment extends Fragment implements View.OnClickListener {
         return rootView;
     }
 
-    @Override
-    public void onClick(View v) {
-        Joke joke = null;
-        ((MainActivity) getActivity()).requestJoke();
-
-    }
 }

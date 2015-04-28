@@ -9,4 +9,5 @@
     <string name="thinking3">Thinking...</string>
     <string name="internet_problems">Internet problems?</string>
     <string name="title_half">\'s icndb Client</string>
+    <string name="slide_text_message">Slide Text above left or right.</string>
 </resources>

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,30 +26,18 @@ public class JokesPagerAdapter extends PagerAdapter {
             "JokesPagerAdapter.KEY_PRIME_FRAGMENT_ID";
     private final FragmentManager mFragmentManager;
 
-    ArrayList<Joke> mJokes;
+    ArrayList<Integer> mIds;
     private Fragment mCurrentPrimaryItem;
     private FragmentTransaction mCurTransaction;
 
     public JokesPagerAdapter(FragmentManager fragmentManager){
-        mJokes = new ArrayList<Joke>();
+        mIds = new ArrayList<Integer>();
         mFragmentManager = fragmentManager;
-    }
-
-    /**
-     * Adds the Joke to the list and notifies data set changed.
-     * Returns the position the joke was added in (last position).
-     * @param joke The joke to add to adapter.
-     * @return the position the joke was added to the adapter in.
-     */
-    public int addJoke(Joke joke){
-        mJokes.add(joke);
-        super.notifyDataSetChanged();
-        return mJokes.size() - 1;
     }
 
     @Override
     public int getCount() {
-        return mJokes.size();
+        return mIds.size();
     }
 
     @Override
@@ -62,13 +51,14 @@ public class JokesPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+        Log.d("com.mck", "instantiateItem for position " + position);
 
         if (mCurTransaction == null) {
             mCurTransaction = mFragmentManager.beginTransaction();
         }
         Fragment fragment = new JokeFragment();
         Bundle args = new Bundle();
-        args.putParcelable(JokeFragment.KEY_JOKE, mJokes.get(position));
+        args.putInt(JokeFragment.KEY_JOKE_ID, mIds.get(position).intValue());
         args.putInt(KEY_FRAGMENT_POSITION, position);
         fragment.setArguments(args);
         //  this fragment is not being set to primary.
@@ -103,14 +93,14 @@ public class JokesPagerAdapter extends PagerAdapter {
         if (fragId != -1){
             mCurrentPrimaryItem = mFragmentManager.findFragmentById(fragId);
         }
-        mJokes = bundle.getParcelableArrayList(KEY_JOKES_ARRAY);
+        mIds = bundle.getIntegerArrayList(KEY_JOKES_ARRAY);
         notifyDataSetChanged();
     }
 
     @Override
     public Parcelable saveState() {
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_JOKES_ARRAY, mJokes);
+        bundle.putIntegerArrayList(KEY_JOKES_ARRAY, mIds);
         if (mCurrentPrimaryItem != null) {
             int primeFragId = mCurrentPrimaryItem.getId();
             bundle.putInt(KEY_PRIME_FRAGMENT_ID, primeFragId);
@@ -138,5 +128,16 @@ public class JokesPagerAdapter extends PagerAdapter {
             }
             mCurrentPrimaryItem = fragment;
         }
+    }
+
+    public void addFragment(int id) {
+        Log.d("com.mck", "add Fragment with id " + String.valueOf(id));
+        mIds.add(id);
+        super.notifyDataSetChanged();
+    }
+
+    public void addFragments(ArrayList<Integer> ids) {
+        mIds.addAll(ids);
+        super.notifyDataSetChanged();
     }
 }
