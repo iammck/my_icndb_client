@@ -39,6 +39,7 @@ public class JokeViewerFragment extends Fragment implements LoaderManager.Loader
     // Using db ids and not joke ids to keep track of loaded Jokes.
     private ArrayList<Integer> jokeIds;
     private int restartPosition = -1;
+    private boolean needsRestart = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,10 +61,11 @@ public class JokeViewerFragment extends Fragment implements LoaderManager.Loader
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.joke_viewer_fragment, container, false);
-        Log.v("com.mck", "SliderJokesFragment onCreateView() has been called.");
 
         SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         int pos = prefs.getInt(KEY_RESTART_POSITION, -1);
+        Log.v("com.mck", "SliderJokesFragment onCreateView() has been called restart position is "
+                + pos + ".");
         // if there is no prev state and there is a restart position
         if (savedInstanceState == null && pos >= 0){
             prefs.edit().putInt(KEY_RESTART_POSITION, -1).commit();
@@ -149,9 +151,10 @@ public class JokeViewerFragment extends Fragment implements LoaderManager.Loader
 
             // get the last position, if there is not one, set it to the last item.
             // Pager indices start with 0, but our db starts with 1
-            SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-            restartPosition = preferences.getInt(KEY_RESTART_POSITION, cursor.getCount() - 1);
-            mPager.setCurrentItem(restartPosition, true);
+            //SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+            //restartPosition = preferences.getInt(KEY_RESTART_POSITION, cursor.getCount() - 1);
+            Log.v("com.mck", "restartPosition is set at " + restartPosition);
+            mPager.setCurrentItem(restartPosition, false);
         }
     }
 
