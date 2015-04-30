@@ -1,3 +1,4 @@
 <resources>
     <string name="default_output_text">Slide the image below left or right.</string>
+    <string name="fetching_joke">Fetching....</string>
 </resources>

@@ -44,11 +44,10 @@ public class JokeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.slider_fragment,container, false);
+        // create the view for the fragment.
+        View rootView = inflater.inflate(R.layout.joke_fragment,container, false);
         TextView tvOutput = (TextView) rootView.findViewById(R.id.joke_fragment_output);
         id = getArguments().getInt(KEY_JOKE_ID);
-        Log.v("com.mck", "JokeFragment onCreate() with id " + id);
 
         Cursor cursor = getActivity().getContentResolver().query(
                 JokeProviderContract.JokesTable.getItemUri(id),null,null,null,null);
