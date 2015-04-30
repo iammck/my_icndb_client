@@ -8,11 +8,11 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="viewPagerFlavorCalrissianDebug" />
+        <option name="SELECTED_BUILD_VARIANT" value="viewPagerFlavorCalrissianRelease" />
         <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleViewPagerFlavorCalrissianDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileViewPagerFlavorCalrissianDebugSources" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateViewPagerFlavorCalrissianDebugSources" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleViewPagerFlavorCalrissianRelease" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileViewPagerFlavorCalrissianReleaseSources" />
+        <option name="SOURCE_GEN_TASK_NAME" value="generateViewPagerFlavorCalrissianReleaseSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -22,23 +22,23 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/viewPagerFlavor/calrissianDebug" />
+    <output url="file://$MODULE_DIR$/build/intermediates/classes/viewPagerFlavor/calrissianRelease" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/androidTest/SlidingJokesFlavor/debug" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/viewPagerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/viewPagerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/viewPagerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/viewPagerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/viewPagerFlavor/calrissianDebug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/viewPagerFlavor/calrissianDebug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianDebug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/viewPagerFlavor/calrissianRelease" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/viewPagerFlavor/calrissianRelease" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/viewPagerFlavor/calrissianRelease" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/viewPagerFlavor/calrissianRelease" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/viewPagerFlavor/calrissianRelease" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/viewPagerFlavor/calrissianRelease" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavorCalrissianRelease/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavor/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavor/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/viewPagerFlavor/assets" type="java-resource" />
