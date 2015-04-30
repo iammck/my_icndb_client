@@ -8,51 +8,51 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="JokeViewerFlavorCalrissianDebug" />
+        <option name="SELECTED_BUILD_VARIANT" value="buttonFlavorCalrissianDebug" />
         <option name="SELECTED_TEST_ARTIFACT" value="_android_test_" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleJokeViewerFlavorCalrissianDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileJokeViewerFlavorCalrissianDebugSources" />
-        <option name="SOURCE_GEN_TASK_NAME" value="generateJokeViewerFlavorCalrissianDebugSources" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleButtonFlavorCalrissianDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileButtonFlavorCalrissianDebugSources" />
+        <option name="SOURCE_GEN_TASK_NAME" value="generateButtonFlavorCalrissianDebugSources" />
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/JokeViewerFlavor/res;file://$MODULE_DIR$/src/calrissian/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/buttonFlavor/res;file://$MODULE_DIR$/src/calrissian/res" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/JokeViewerFlavor/calrissianDebug" />
+    <output url="file://$MODULE_DIR$/build/intermediates/classes/ButtonFlavor/calrissianDebug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/androidTest/SlidingJokesFlavor/debug" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/JokeViewerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/JokeViewerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/JokeViewerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/JokeViewerFlavor/calrissianDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/JokeViewerFlavor/calrissianDebug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/JokeViewerFlavor/calrissianDebug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavorCalrissianDebug/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/jni" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/JokeViewerFlavor/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/jni" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestJokeViewerFlavor/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/ButtonFlavor/calrissianDebug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/aidl/ButtonFlavor/calrissianDebug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/ButtonFlavor/calrissianDebug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/ButtonFlavor/calrissianDebug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/ButtonFlavor/calrissianDebug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/generated/ButtonFlavor/calrissianDebug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavorCalrissianDebug/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/buttonFlavor/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavor/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavor/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavor/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/buttonFlavor/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavor/jni" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ButtonFlavor/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/jni" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestButtonFlavor/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/calrissian/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/calrissian/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/calrissian/assets" type="java-resource" />

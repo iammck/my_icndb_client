@@ -12,6 +12,7 @@ android {
         versionName "3.0"
     }
 
+    // the signing config for release requires there to be a console.
     signingConfigs {
         release {
             if (System.console() != null) {
@@ -23,6 +24,17 @@ android {
         }
     }
 
+    /**
+     * There are six different build types: debug, release, millhouseDebug, calrissianDebug,
+     * millhouseRelease, and calrissianRelease.
+     *
+     * Following the documentation, the additional buildTypes are instantiated with either
+     * debug or release build types. Note that a java file by name can not exist in both
+     * main and build type src directory.
+     *
+     * We also want to change the src for the additional build types. Which is done below
+     * the buildTypes closure.
+     */
     buildTypes {
         release {
             minifyEnabled false
@@ -54,6 +66,7 @@ android {
             applicationIdSuffix ".release.calrissian"
         }
     }
+
     // They use custom source sets.
     sourceSets {
         millhouseDebug.setRoot('src/millhouse')
@@ -62,6 +75,7 @@ android {
         calrissianRelease.setRoot('src/calrissian')
     }
 
+    // there are duplicates of these and the build system get confused so exclude them.
     packagingOptions {
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/license.txt'
@@ -75,27 +89,25 @@ android {
      * more info about using multiple akps can be found at
      * https://developer.android.com/training/multiple-apks/index.html
      *
-     * I am going to use product flavors to make upgrades to the UI. Plus,
-     * I am interested in knowing if like build types a class defined in the
-     * src/main/java directory can not be redefined in the src/flavor/java.
-     * (For build types if src/main/java/MyClass.java exits, creating a
-     * src/buildType/MyClass.java will raise compile time errors because
-     * the buildType is initialized with a debug release build types).
+     * I am going to use product flavors to make an upgrade to the UI.
      *
-     * unlike the calrissianRelease or millhouse build types, upgrades to the UI
+     * Unlike the calrissianRelease or millhouse build types, upgrades to the UI
      * are not creating a different application, but are different versions
-     * of the same application. That makes them good canidates for flavors.
+     * of the same application. That makes them good candidates for flavors.
      *
-     * There are product flavor for using a button or a ViewPager with adapters.
-     * SlidingJokesFlavor is the combination of the two flavors. The Slider
-     * flavor is commented out as not used. Button flavor is still active for
-     * reference of tests depending upon flavor. See app/src/androidTestButtonActivityFlavor
-     * for specific flavor test v app/src/androidTest for the main android tests.
+     * These are product flavors for using a button or a ViewPager with adapters.
+     * See app/src/androidTestButtonActivityFlavor and/or
+     * app/src/androidTestJokeViewerFlavor for tests and the corresponding src/name
+     * dir for flavor specific code. Flavors also incorporate the androidTest dir
+     * into their tests.
+     *
+     * Also, from what i can tell it is an error to have duplicate java class names
+     * in both the main or build type branches and the flavor branch, yet resources
+     * are fine.
      */
     productFlavors {
-        ButtonActivityFlavor {}
-        //SliderActivityFlavor {}
-        JokeViewerFlavor {}
+        buttonFlavor {}
+        viewPagerFlavor {}
     }
 }
 
@@ -104,6 +116,7 @@ repositories{
 }
 
 dependencies {
+    // If AS is not able to find dependencies yet can to assemble from cmd, try synching AS.
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
@@ -115,6 +128,5 @@ dependencies {
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
     androidTestCompile 'org.skyscreamer:jsonassert:1.2.3'
-    //compile 'com.jayway.android.robotium:robotium-solo:5.3.1'
     androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.3.1'
 }
